@@ -5,25 +5,21 @@ const EMAIL = "waytoschools.org@gmail.com";
 
 const PROGRAMS = [
   {
-    icon: "👧",
     title: "Girls' Education",
     desc: "Supporting girls from the Majhi community in Gulmi, Nepal — 23 girls currently enrolled, and 2 graduates from 12th grade.",
     tag: "Featured",
   },
   {
-    icon: "🏫",
     title: "School Partnerships",
     desc: "Working directly with Gyanodaya Secondary School and Shree Majhi Primary School to remove barriers to attendance.",
     tag: null,
   },
   {
-    icon: "👨‍👩‍👧",
     title: "Family & Community",
     desc: "Engaging families, local organizations, and community leaders to create lasting, sustainable change from within.",
     tag: null,
   },
   {
-    icon: "🔍",
     title: "Research & Analysis",
     desc: "Conducting initial studies to identify financial, social, and cultural barriers so we can target our efforts precisely.",
     tag: null,
@@ -385,7 +381,6 @@ export default function WaytoSchools() {
           background: "rgba(240,192,64,0.1)", border: "1px solid rgba(240,192,64,0.28)",
           padding: "1.2rem 1.5rem", maxWidth: 250, backdropFilter: "blur(8px)",
         }}>
-          <div style={{ fontSize: "1.4rem", marginBottom: "0.4rem" }}>☕</div>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "rgba(255,255,255,0.8)", lineHeight: 1.6 }}>
             Skip one coffee a month —<br /><strong style={{ color: "#f0c040" }}>$4 sends a child to school</strong> for an entire year.
           </p>
@@ -459,15 +454,14 @@ export default function WaytoSchools() {
               </div>
               <div className="school-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                 {[
-                  { school: "Gyanodaya Secondary School", emoji: "🏫", photo: "/images/Picture1.jpg" },
-                  { school: "Shree Majhi Primary School", emoji: "📖", photo: "/images/ShreeMajhi1.jpg" },
+                  { school: "Gyanodaya Secondary School", photo: "/images/Picture1.jpg" },
+                  { school: "Shree Majhi Primary School", photo: "/images/ShreeMajhi1.jpg" },
                 ].map(s => (
                   <div key={s.school} style={{ background: "white", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", borderTop: "3px solid #f0c040", overflow: "hidden" }}>
                     <div style={{ height: 100, overflow: "hidden" }}>
                       <img src={s.photo} alt={s.school} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                     </div>
                     <div style={{ padding: "0.9rem 1rem" }}>
-                      <div style={{ fontSize: "1.2rem", marginBottom: "0.3rem" }}>{s.emoji}</div>
                       <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 600, color: "#2d0a14", lineHeight: 1.4 }}>{s.school}</div>
                     </div>
                   </div>
@@ -498,12 +492,11 @@ export default function WaytoSchools() {
           <h3 style={{ fontFamily: "'Lora', serif", fontSize: "1.3rem", fontWeight: 700, color: "white", marginBottom: "2rem", textAlign: "center" }}>Our Values</h3>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem" }} className="tiers">
             {[
-              { value: "Equity", emoji: "⚖️", desc: "Every child deserves equal access to education regardless of background, gender, or economic status." },
-              { value: "Education", emoji: "📚", desc: "Everyone should be provided specific tools or means based on what they need to succeed." },
-              { value: "Enrichment", emoji: "🌱", desc: "Enrichment can provide a sense of self awareness and understanding to promote education." },
+              { value: "Equity", desc: "Every child deserves equal access to education regardless of background, gender, or economic status." },
+              { value: "Education", desc: "Everyone should be provided specific tools or means based on what they need to succeed." },
+              { value: "Enrichment", desc: "Enrichment can provide a sense of self awareness and understanding to promote education." },
             ].map(v => (
               <div key={v.value} style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", padding: "2rem", textAlign: "center" }}>
-                <div style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>{v.emoji}</div>
                 <h4 style={{ fontFamily: "'Lora', serif", fontSize: "1.1rem", fontWeight: 700, color: "#f0c040", marginBottom: "0.75rem" }}>{v.value}</h4>
                 <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.9rem", color: "rgba(255,255,255,0.7)", lineHeight: 1.7 }}>{v.desc}</p>
               </div>
@@ -690,8 +683,7 @@ export default function WaytoSchools() {
             {PROGRAMS.map(p => (
               <div key={p.title} className="program-card">
                 {p.tag && <div className="badge">{p.tag}</div>}
-                <div style={{ fontSize: "2rem", marginBottom: "1rem" }}>{p.icon}</div>
-                <h3 style={{ fontFamily: "'Lora', serif", fontSize: "1.15rem", fontWeight: 700, marginBottom: "0.75rem" }}>{p.title}</h3>
+                  <h3 style={{ fontFamily: "'Lora', serif", fontSize: "1.15rem", fontWeight: 700, marginBottom: "0.75rem" }}>{p.title}</h3>
                 <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.92rem", lineHeight: 1.75, color: "#4a1a25" }}>{p.desc}</p>
               </div>
             ))}
@@ -728,7 +720,6 @@ export default function WaytoSchools() {
           {/* Visit Details */}
           <div className="two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", marginBottom: "4rem" }}>
             <div style={{ background: "white", padding: "2.5rem", boxShadow: "0 2px 16px rgba(0,0,0,0.06)", borderTop: "3px solid #8b1a3a" }}>
-              <div style={{ fontSize: "1.8rem", marginBottom: "1rem" }}>👩‍🏫</div>
               <h3 style={{ fontFamily: "'Lora', serif", fontSize: "1.3rem", fontWeight: 700, marginBottom: "1.2rem" }}>Meeting with Teachers</h3>
               {[
                 "Basic needs are the priority — students lack school supplies and basic clothing",
@@ -741,7 +732,6 @@ export default function WaytoSchools() {
               ))}
             </div>
             <div style={{ background: "white", padding: "2.5rem", boxShadow: "0 2px 16px rgba(0,0,0,0.06)", borderTop: "3px solid #f0c040" }}>
-              <div style={{ fontSize: "1.8rem", marginBottom: "1rem" }}>👧</div>
               <h3 style={{ fontFamily: "'Lora', serif", fontSize: "1.3rem", fontWeight: 700, marginBottom: "1.2rem" }}>Meeting with Students</h3>
               {[
                 "Met all students from grades 1 to 10",
@@ -883,13 +873,12 @@ export default function WaytoSchools() {
           </div>
           <div className="two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem" }}>
             {[
-              { icon: "💸", title: "Donate", desc: "Every dollar goes directly to children in Nepal. Skip one coffee a month and change a child's life for a year.", cta: "Donate via PayPal", link: PAYPAL_LINK },
-              { icon: "📣", title: "Spread the Word", desc: "Share our mission with friends, family, and on social media. Awareness is the first step to change.", cta: null },
-              { icon: "✈️", title: "Volunteer in Nepal", desc: "Join us on the ground in Gulmi. Work directly with students, teachers, and families in Majhi Gaun.", cta: null },
-              { icon: "🤝", title: "Partner with Us", desc: "Is your organization looking for a CSR partner? Let's work together to scale our impact across more villages.", cta: null },
+              { title: "Donate", desc: "Every dollar goes directly to children in Nepal. Skip one coffee a month and change a child's life for a year.", cta: "Donate via PayPal", link: PAYPAL_LINK },
+              { title: "Spread the Word", desc: "Share our mission with friends, family, and on social media. Awareness is the first step to change.", cta: null },
+              { title: "Volunteer in Nepal", desc: "Join us on the ground in Gulmi. Work directly with students, teachers, and families in Majhi Gaun.", cta: null },
+              { title: "Partner with Us", desc: "Is your organization looking for a CSR partner? Let's work together to scale our impact across more villages.", cta: null },
             ].map(h => (
-              <div key={h.title} style={{ display: "flex", gap: "1.2rem" }}>
-                <div style={{ fontSize: "2rem", flexShrink: 0, marginTop: "0.1rem" }}>{h.icon}</div>
+              <div key={h.title} style={{ borderLeft: "3px solid #8b1a3a", paddingLeft: "1.2rem" }}>
                 <div>
                   <h3 style={{ fontFamily: "'Lora', serif", fontSize: "1.2rem", fontWeight: 700, marginBottom: "0.5rem" }}>{h.title}</h3>
                   <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.75, color: "#4a1a25", marginBottom: h.cta ? "0.75rem" : 0 }}>{h.desc}</p>
@@ -914,11 +903,15 @@ export default function WaytoSchools() {
                 Whether you want to volunteer, partner, or learn more about our work in Nepal — reach out and we'll get back to you soon.
               </p>
               <div style={{ display: "flex", alignItems: "center", gap: "0.8rem", marginBottom: "1.2rem" }}>
-                <div style={{ width: 38, height: 38, background: "#8b1a3a", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1rem", flexShrink: 0 }}>✉️</div>
+                <div style={{ width: 38, height: 38, background: "#8b1a3a", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                </div>
                 <a href={`mailto:${EMAIL}`} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "1rem", color: "#2d0a14", textDecoration: "none", fontWeight: 500 }}>{EMAIL}</a>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "0.8rem", marginBottom: "2rem" }}>
-                <div style={{ width: 38, height: 38, background: "#f0c040", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1rem", flexShrink: 0 }}>💛</div>
+                <div style={{ width: 38, height: 38, background: "#f0c040", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2d0a14" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                </div>
                 <a href={PAYPAL_LINK} target="_blank" rel="noopener noreferrer" className="btn-donate" style={{ fontFamily: "'DM Sans', sans-serif" }}>Donate via PayPal</a>
               </div>
               <div style={{ background: "#2d0a14", padding: "1.5rem", borderLeft: "4px solid #f0c040" }}>
@@ -932,7 +925,6 @@ export default function WaytoSchools() {
             <div>
               {sent ? (
                 <div style={{ background: "white", padding: "3rem", textAlign: "center", boxShadow: "0 4px 24px rgba(0,0,0,0.06)" }}>
-                  <div style={{ fontSize: "3rem", marginBottom: "1rem" }}>🙏</div>
                   <h3 style={{ fontFamily: "'Lora', serif", fontSize: "1.5rem", marginBottom: "0.75rem" }}>Dhanyabad! Thank You!</h3>
                   <p style={{ fontFamily: "'DM Sans', sans-serif", color: "#4a1a25" }}>We'll be in touch with you soon.</p>
                 </div>
@@ -977,7 +969,7 @@ export default function WaytoSchools() {
               <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", lineHeight: 1.8, marginBottom: "0.75rem" }}>
                 A 501(c)(3) certified nonprofit creating access to education for under-privileged children in Nepal's villages.
               </p>
-              <a href={`mailto:${EMAIL}`} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "rgba(255,255,255,0.4)", textDecoration: "none" }}>✉️ {EMAIL}</a>
+              <a href={`mailto:${EMAIL}`} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "rgba(255,255,255,0.4)", textDecoration: "none" }}>{EMAIL}</a>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}>
               <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.7rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "rgba(255,255,255,0.28)", marginBottom: "0.3rem" }}>Navigate</div>
