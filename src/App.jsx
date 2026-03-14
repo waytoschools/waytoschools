@@ -336,13 +336,16 @@ export default function WaytoSchools() {
       {/* ── HERO ── */}
       <section id="home" style={{
         minHeight: "100vh",
-        background: "linear-gradient(160deg, #1a0509 0%, #3a0d1a 45%, #4a1020 75%, #2d0a14 100%)",
+        backgroundImage: "url('/hero.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center 30%",
         display: "flex", flexDirection: "column", justifyContent: "center",
         padding: "9rem 2.5rem 5rem",
         position: "relative", overflow: "hidden",
       }}>
-        <div style={{ position: "absolute", top: "20%", right: "5%", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(240,192,64,0.07) 0%, transparent 70%)", pointerEvents: "none" }} />
-        <svg style={{ position: "absolute", bottom: 0, left: 0, right: 0, width: "100%", opacity: 0.12, pointerEvents: "none" }} viewBox="0 0 1440 220" preserveAspectRatio="none">
+        {/* Dark overlay so text stays readable */}
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, rgba(26,5,9,0.82) 0%, rgba(58,13,26,0.75) 50%, rgba(26,5,9,0.65) 100%)", pointerEvents: "none" }} />
+        <svg style={{ position: "absolute", bottom: 0, left: 0, right: 0, width: "100%", opacity: 0.15, pointerEvents: "none" }} viewBox="0 0 1440 220" preserveAspectRatio="none">
           <path d="M0,220 L0,130 L100,65 L200,110 L320,45 L440,95 L560,25 L680,75 L800,35 L920,85 L1040,50 L1160,95 L1280,55 L1440,90 L1440,220Z" fill="#f0c040" />
         </svg>
 
