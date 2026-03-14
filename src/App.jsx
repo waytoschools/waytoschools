@@ -220,6 +220,10 @@ export default function WaytoSchools() {
           .tiers { grid-template-columns: 1fr !important; }
           .coffee-card { display: none !important; }
           .school-grid { grid-template-columns: 1fr 1fr !important; }
+          .photo-grid { grid-template-columns: 1fr 1fr !important; }
+          .photo-grid > div[style*="span 2"] { grid-column: span 2 !important; grid-row: span 1 !important; }
+          .photo-grid > div[style*="span 2"][style*="grid-row"] { grid-row: span 1 !important; }
+          .team-grid { grid-template-columns: 1fr 1fr !important; }
         }
 
         @media (max-width: 480px) {
@@ -437,27 +441,35 @@ export default function WaytoSchools() {
 
             <div>
               <span className="eyebrow">Featured Project</span>
-              <div style={{ background: "linear-gradient(135deg, #3a0d1a, #4a1020)", padding: "2.5rem", marginBottom: "1.5rem", position: "relative", overflow: "hidden" }}>
-                <svg style={{ position: "absolute", bottom: 0, left: 0, right: 0, opacity: 0.2, pointerEvents: "none" }} viewBox="0 0 500 100" preserveAspectRatio="none">
-                  <path d="M0,100 L0,50 L80,20 L160,45 L240,10 L320,38 L400,15 L500,35 L500,100Z" fill="#f0c040" />
-                </svg>
-                <div style={{ position: "relative", zIndex: 1 }}>
-                  <div style={{ fontSize: "2rem", marginBottom: "0.75rem" }}>🏔️</div>
-                  <h3 style={{ fontFamily: "'Lora', serif", color: "white", fontSize: "1.3rem", fontWeight: 700, marginBottom: "0.4rem" }}>Majhi Gaun, Gulmi</h3>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.55)", fontSize: "0.82rem", fontStyle: "italic", marginBottom: "1rem" }}>"Fishermen Village"</p>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.85)", fontSize: "0.95rem", lineHeight: 1.7 }}>
+              {/* Photo card replacing the abstract dark card */}
+              <div style={{ position: "relative", marginBottom: "1.5rem", overflow: "hidden", borderRadius: "2px" }}>
+                <img
+                  src="/images/Picture1.jpg"
+                  alt="School in Majhi Gaun, Gulmi Nepal"
+                  style={{ width: "100%", height: 280, objectFit: "cover", objectPosition: "center", display: "block" }}
+                />
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(20,4,10,0.95) 0%, rgba(20,4,10,0.55) 50%, transparent 100%)" }} />
+                <div style={{ position: "absolute", bottom: 0, left: 0, padding: "1.5rem 1.8rem", zIndex: 1 }}>
+                  <h3 style={{ fontFamily: "'Lora', serif", color: "white", fontSize: "1.25rem", fontWeight: 700, marginBottom: "0.3rem" }}>Majhi Gaun, Gulmi</h3>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.6)", fontSize: "0.8rem", fontStyle: "italic", marginBottom: "0.6rem" }}>"Fishermen Village" — Nepal</p>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.88)", fontSize: "0.9rem", lineHeight: 1.6 }}>
                     Currently supporting <strong style={{ color: "#f0c040" }}>23 girls</strong> from the Majhi community, with <strong style={{ color: "#f0c040" }}>2 graduates</strong> from 12th grade.
                   </p>
                 </div>
               </div>
               <div className="school-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
                 {[
-                  { school: "Gyanodaya Secondary School", emoji: "🏫" },
-                  { school: "Shree Majhi Primary School", emoji: "📖" },
+                  { school: "Gyanodaya Secondary School", emoji: "🏫", photo: "/images/Picture1.jpg" },
+                  { school: "Shree Majhi Primary School", emoji: "📖", photo: "/images/ShreeMajhi1.jpg" },
                 ].map(s => (
-                  <div key={s.school} style={{ background: "white", padding: "1.2rem", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", borderTop: "3px solid #f0c040" }}>
-                    <div style={{ fontSize: "1.5rem", marginBottom: "0.4rem" }}>{s.emoji}</div>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 600, color: "#2d0a14", lineHeight: 1.4 }}>{s.school}</div>
+                  <div key={s.school} style={{ background: "white", boxShadow: "0 2px 12px rgba(0,0,0,0.06)", borderTop: "3px solid #f0c040", overflow: "hidden" }}>
+                    <div style={{ height: 100, overflow: "hidden" }}>
+                      <img src={s.photo} alt={s.school} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    </div>
+                    <div style={{ padding: "0.9rem 1rem" }}>
+                      <div style={{ fontSize: "1.2rem", marginBottom: "0.3rem" }}>{s.emoji}</div>
+                      <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", fontWeight: 600, color: "#2d0a14", lineHeight: 1.4 }}>{s.school}</div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -581,21 +593,31 @@ export default function WaytoSchools() {
 
           {/* Schools */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", marginBottom: "3rem" }} className="two-col">
-            <div style={{ background: "white", padding: "2rem", boxShadow: "0 2px 16px rgba(0,0,0,0.06)", borderTop: "3px solid #f0c040" }}>
-              <h3 style={{ fontFamily: "'Lora', serif", fontSize: "1.2rem", fontWeight: 700, marginBottom: "1rem" }}>Shree Majhi Primary School</h3>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.7, color: "#4a1a25", marginBottom: "1rem" }}>
-                Established in BS 2053, located in Majhi Community of Gulmi. Has around 74 students in grades 1–5.
-              </p>
-              <div style={{ background: "#f5ece0", padding: "1rem" }}>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.5rem" }}>Student Breakdown:</p>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#4a1a25" }}>Girls: 37 &nbsp;|&nbsp; Boys: 37 &nbsp;|&nbsp; Total: 74</p>
+            <div style={{ background: "white", boxShadow: "0 2px 16px rgba(0,0,0,0.06)", borderTop: "3px solid #f0c040", overflow: "hidden" }}>
+              <div style={{ height: 180, overflow: "hidden" }}>
+                <img src="/images/ShreeMajhi1.jpg" alt="Shree Majhi Primary School" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              </div>
+              <div style={{ padding: "1.8rem" }}>
+                <h3 style={{ fontFamily: "'Lora', serif", fontSize: "1.2rem", fontWeight: 700, marginBottom: "1rem" }}>Shree Majhi Primary School</h3>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.7, color: "#4a1a25", marginBottom: "1rem" }}>
+                  Established in BS 2053, located in Majhi Community of Gulmi. Has around 74 students in grades 1–5.
+                </p>
+                <div style={{ background: "#f5ece0", padding: "1rem" }}>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.5rem" }}>Student Breakdown:</p>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#4a1a25" }}>Girls: 37 &nbsp;|&nbsp; Boys: 37 &nbsp;|&nbsp; Total: 74</p>
+                </div>
               </div>
             </div>
-            <div style={{ background: "white", padding: "2rem", boxShadow: "0 2px 16px rgba(0,0,0,0.06)", borderTop: "3px solid #f0c040" }}>
-              <h3 style={{ fontFamily: "'Lora', serif", fontSize: "1.2rem", fontWeight: 700, marginBottom: "1rem" }}>Gyanodaya Higher Secondary School</h3>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.7, color: "#4a1a25" }}>
-                A government school with around 900 students. Well equipped with facilities including a hostel for grade 10 students. New building under construction with library, museum, canteen, and sports club.
-              </p>
+            <div style={{ background: "white", boxShadow: "0 2px 16px rgba(0,0,0,0.06)", borderTop: "3px solid #f0c040", overflow: "hidden" }}>
+              <div style={{ height: 180, overflow: "hidden" }}>
+                <img src="/images/Picture1.jpg" alt="Gyanodaya Higher Secondary School" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              </div>
+              <div style={{ padding: "1.8rem" }}>
+                <h3 style={{ fontFamily: "'Lora', serif", fontSize: "1.2rem", fontWeight: 700, marginBottom: "1rem" }}>Gyanodaya Higher Secondary School</h3>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.7, color: "#4a1a25" }}>
+                  A government school with around 900 students. Well equipped with facilities including a hostel for grade 10 students. New building under construction with library, museum, canteen, and sports club.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -752,6 +774,67 @@ export default function WaytoSchools() {
             </div>
           </div>
 
+        </div>
+      </section>
+
+      {/* ── PHOTO GALLERY ── */}
+      <section id="gallery" style={{ padding: "7rem 2.5rem", background: "#2d0a14", position: "relative", overflow: "hidden" }}>
+        <div style={{ position: "absolute", inset: 0, backgroundImage: "radial-gradient(circle at 20% 50%, rgba(240,192,64,0.06) 0%, transparent 60%)", pointerEvents: "none" }} />
+        <div style={{ maxWidth: 1100, margin: "0 auto", position: "relative", zIndex: 1 }}>
+          <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#f0c040", display: "block", marginBottom: "0.8rem" }}>From the Field</span>
+            <h2 style={{ fontFamily: "'Lora', serif", fontSize: "clamp(2rem, 4vw, 2.8rem)", fontWeight: 700, color: "white" }}>Gulmi, Nepal — 2024</h2>
+            <p style={{ maxWidth: 520, margin: "1rem auto 0", fontFamily: "'DM Sans', sans-serif", color: "rgba(255,255,255,0.6)", fontSize: "0.97rem", lineHeight: 1.8 }}>
+              Our team traveled to Gulmi in May 2024 to distribute supplies, meet families, and see our programs in action.
+            </p>
+          </div>
+
+          {/* Masonry-style photo grid */}
+          <div style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gridTemplateRows: "auto",
+            gap: "0.75rem",
+          }} className="photo-grid">
+            {/* Large featured photo - spans 2 rows on the left */}
+            <div style={{ gridRow: "span 2", overflow: "hidden", position: "relative" }}
+              onMouseOver={e => { e.currentTarget.querySelector('img').style.transform = "scale(1.05)"; }}
+              onMouseOut={e => { e.currentTarget.querySelector('img').style.transform = "scale(1)"; }}
+            >
+              <img src="/images/IMG_7211.jpg" alt="Students in school uniforms, Gulmi Nepal" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", transition: "transform 0.5s ease", display: "block", minHeight: 420 }} />
+            </div>
+            {/* Regular photos */}
+            {[
+              { src: "/images/IMG_7190.jpg", alt: "Girls in school uniforms, Nepal" },
+              { src: "/images/IMG_7187.jpg", alt: "Child with school bag, Nepal" },
+              { src: "/images/IMG_7185.jpg", alt: "Child at school, Gulmi" },
+              { src: "/images/IMG_7197.jpg", alt: "Children in the community" },
+            ].map(photo => (
+              <div key={photo.src} style={{ overflow: "hidden", position: "relative", height: 200 }}
+                onMouseOver={e => { e.currentTarget.querySelector('img').style.transform = "scale(1.05)"; }}
+                onMouseOut={e => { e.currentTarget.querySelector('img').style.transform = "scale(1)"; }}
+              >
+                <img src={photo.src} alt={photo.alt} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease", display: "block" }} />
+              </div>
+            ))}
+            {/* Bottom wide photo - spans 2 columns */}
+            <div style={{ gridColumn: "span 2", overflow: "hidden", position: "relative", height: 220 }}
+              onMouseOver={e => { e.currentTarget.querySelector('img').style.transform = "scale(1.05)"; }}
+              onMouseOut={e => { e.currentTarget.querySelector('img').style.transform = "scale(1)"; }}
+            >
+              <img src="/images/Study.jpg" alt="Community meeting in Gulmi, Nepal" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease", display: "block" }} />
+              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "1rem 1.5rem", background: "linear-gradient(to top, rgba(20,4,10,0.85) 0%, transparent 100%)" }}>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "rgba(255,255,255,0.9)", fontStyle: "italic" }}>WaytoSchools team meeting with community families — Gulmi, Nepal 2024</p>
+              </div>
+            </div>
+            {/* Side photo */}
+            <div style={{ overflow: "hidden", position: "relative", height: 220 }}
+              onMouseOver={e => { e.currentTarget.querySelector('img').style.transform = "scale(1.05)"; }}
+              onMouseOut={e => { e.currentTarget.querySelector('img').style.transform = "scale(1)"; }}
+            >
+              <img src="/images/ShreeMajhi2.jpg" alt="School building, Majhi Gaun" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease", display: "block" }} />
+            </div>
+          </div>
         </div>
       </section>
 
