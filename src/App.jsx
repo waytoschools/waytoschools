@@ -1,4 +1,9 @@
 import { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
+
+const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
+const EMAILJS_TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+const EMAILJS_PUBLIC_KEY = "YOUR_PUBLIC_KEY";
 
 const PAYPAL_LINK = "https://www.paypal.com/donate/?hosted_button_id=DQYL7GQF6H5HL";
 const EMAIL = "waytoschools.org@gmail.com";
@@ -51,6 +56,7 @@ export default function WaytoSchools() {
   const [dropdown, setDropdown] = useState(null);
   const [form, setForm] = useState({ name: "", email: "", message: "", type: "volunteer" });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
   const [activeTab, setActiveTab] = useState("equity");
 
   useEffect(() => {
@@ -517,12 +523,12 @@ export default function WaytoSchools() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem" }} className="team-grid">
             {[
-              { name: "Bindiya Jha", role: "Board President", photo: "/images/BJ.jpg" },
-              { name: "Samanta Sharma", role: "Board Vice-President", photo: "/images/SS.jpg" },
-              { name: "Kabita Karki", role: "Board Treasurer", photo: "/images/KK.jpg" },
-              { name: "Hasina Karki", role: "Board Secretary", photo: "/images/HK.jpg" },
-              { name: "Anjana Gautam", role: "Founder & Executive Director", photo: "/images/AG.jpg" },
-              { name: "Saramsh Pandit", role: "Co-founder & Program Manager", photo: "/images/SP.jpg" },
+              { name: "Bindiya Jha", role: "Board President", photo: "/images/BJ.jpg", linkedin: "https://www.linkedin.com/in/bindiya-jha-ncsc-cchi-p-certified-nepali-interpreter-72b37a156/", bio: "A fierce advocate for girls' education and equal access for all children. As a NCSC-CCHI-P certified Nepali interpreter, she bridges critical language and cultural gaps for Nepali communities. Her work at WaytoSchools reflects her lifelong commitment to ensuring every child has a voice and a path forward." },
+              { name: "Samanta Sharma", role: "Board Vice-President", photo: "/images/SS.jpg", linkedin: "https://www.linkedin.com/in/samanta-sharma/", bio: "Driven by the belief that every child deserves the opportunity to thrive, Samanta brings energy and vision to WaytoSchools as Board Vice-President. She champions girls' education as a cornerstone of community development in Nepal. Her leadership helps guide the organization's strategic direction and outreach efforts." },
+              { name: "Kabita Karki", role: "Board Treasurer", photo: "/images/KK.jpg", linkedin: "https://www.brownhealth.org/providers/kabita-karki-md", bio: "Committed to the deep connection between health, education, and community well-being, Kabita brings a physician's dedication to WaytoSchools. She serves as an Internal Medicine Hospitalist at Rhode Island Hospital, where she trained after earning her MD from Tribhuvan University in Nepal. She channels that same care for her patients into ensuring girls in Nepal have the resources to build healthy, educated futures." },
+              { name: "Hasina Karki", role: "Board Secretary", photo: "/images/HK.jpg", linkedin: "https://www.linkedin.com/in/hkarkideertz/", bio: "With a deep conviction that education is the surest path out of poverty, Hasina works to create lasting pathways of opportunity for Nepal's most vulnerable children. As Board Secretary, she keeps WaytoSchools organized and mission-focused. Her dedication to girls' education reflects her belief that empowering one girl can transform an entire community." },
+              { name: "Anjana Gautam", role: "Founder & Executive Director", photo: "/images/AG.jpg", linkedin: "https://www.linkedin.com/in/anjana-gautam-2210ba10/", bio: "The driving force behind WaytoSchools, Anjana founded the organization to turn her lifelong dedication to girls' education into lasting impact. She leads with vision and compassion, building programs that reach the most underserved communities in Nepal. Under her direction, WaytoSchools has grown into a trusted bridge between global supporters and local change." },
+              { name: "Saramsh Pandit", role: "Co-founder & Program Manager", photo: "/images/SP.jpg", linkedin: "https://www.linkedin.com/in/saramsh-pandit-67356214/", bio: "Dedicated to removing the barriers that keep children from reaching their full potential, Saramsh co-founded WaytoSchools to make that mission a reality on the ground. As Program Manager, he oversees the design and delivery of initiatives that bring educational resources directly to girls in rural Nepal. He believes that access to education is not a privilege — it is a right." },
             ].map(m => (
               <div key={m.name} style={{
                 background: "white",
@@ -538,8 +544,13 @@ export default function WaytoSchools() {
                 <div style={{ width: 120, height: 120, borderRadius: "50%", overflow: "hidden", margin: "0 auto 1.2rem", border: "3px solid #f0c040" }}>
                   <img src={m.photo} alt={m.name} style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top" }} />
                 </div>
-                <h3 style={{ fontFamily: "'Lora', serif", fontSize: "1.1rem", fontWeight: 700, marginBottom: "0.4rem" }}>{m.name}</h3>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "#8b1a3a", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" }}>{m.role}</p>
+                <h3 style={{ fontFamily: "'Lora', serif", fontSize: "1.1rem", fontWeight: 700, marginBottom: "0.4rem" }}>
+                  {m.linkedin ? (
+                    <a href={m.linkedin} target="_blank" rel="noopener noreferrer" style={{ color: "inherit", textDecoration: "none", borderBottom: "1.5px solid #f0c040" }}>{m.name}</a>
+                  ) : m.name}
+                </h3>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "#8b1a3a", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", marginBottom: "0.8rem" }}>{m.role}</p>
+                {m.bio && <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "#4a1a25", lineHeight: 1.7, textAlign: "left" }}>{m.bio}</p>}
               </div>
             ))}
           </div>
@@ -592,13 +603,9 @@ export default function WaytoSchools() {
               </div>
               <div style={{ padding: "1.8rem" }}>
                 <h3 style={{ fontFamily: "'Lora', serif", fontSize: "1.2rem", fontWeight: 700, marginBottom: "1rem" }}>Shree Majhi Primary School</h3>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.7, color: "#4a1a25", marginBottom: "1rem" }}>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.7, color: "#4a1a25" }}>
                   Established in BS 2053, located in Majhi Community of Gulmi. Has around 74 students in grades 1–5.
                 </p>
-                <div style={{ background: "#f5ece0", padding: "1rem" }}>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.5rem" }}>Student Breakdown:</p>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#4a1a25" }}>Girls: 37 &nbsp;|&nbsp; Boys: 37 &nbsp;|&nbsp; Total: 74</p>
-                </div>
               </div>
             </div>
             <div style={{ background: "white", boxShadow: "0 2px 16px rgba(0,0,0,0.06)", borderTop: "3px solid #f0c040", overflow: "hidden" }}>
@@ -607,9 +614,13 @@ export default function WaytoSchools() {
               </div>
               <div style={{ padding: "1.8rem" }}>
                 <h3 style={{ fontFamily: "'Lora', serif", fontSize: "1.2rem", fontWeight: 700, marginBottom: "1rem" }}>Gyanodaya Higher Secondary School</h3>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.7, color: "#4a1a25" }}>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.7, color: "#4a1a25", marginBottom: "1rem" }}>
                   A government school with around 900 students. Well equipped with facilities including a hostel for grade 10 students. New building under construction with library, museum, canteen, and sports club.
                 </p>
+                <div style={{ background: "#f5ece0", padding: "1rem" }}>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.5rem" }}>Student Breakdown:</p>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#4a1a25" }}>Girls: 37 &nbsp;|&nbsp; Boys: 37 &nbsp;|&nbsp; Total: 74</p>
+                </div>
               </div>
             </div>
           </div>
@@ -702,21 +713,6 @@ export default function WaytoSchools() {
             </p>
           </div>
 
-          {/* Visit Stats */}
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem", marginBottom: "4rem" }} className="stats-band">
-            {[
-              { n: "480", l: "Notebooks Distributed" },
-              { n: "480", l: "Pencils Distributed" },
-              { n: "80", l: "School Bags Given" },
-              { n: "80", l: "Uniforms Provided" },
-            ].map(s => (
-              <div key={s.l} style={{ background: "#2d0a14", padding: "2rem", textAlign: "center" }}>
-                <div style={{ fontFamily: "'Lora', serif", fontSize: "2.5rem", fontWeight: 700, color: "#f0c040", lineHeight: 1 }}>{s.n}</div>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "rgba(255,255,255,0.75)", letterSpacing: "0.07em", textTransform: "uppercase", marginTop: "0.5rem" }}>{s.l}</div>
-              </div>
-            ))}
-          </div>
-
           {/* Visit Details */}
           <div className="two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", marginBottom: "4rem" }}>
             <div style={{ background: "white", padding: "2.5rem", boxShadow: "0 2px 16px rgba(0,0,0,0.06)", borderTop: "3px solid #8b1a3a" }}>
@@ -762,6 +758,21 @@ export default function WaytoSchools() {
                 ))}
               </div>
             </div>
+          </div>
+
+          {/* Visit Stats */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1.5rem" }} className="stats-band">
+            {[
+              { n: "480", l: "Notebooks Distributed" },
+              { n: "480", l: "Pencils Distributed" },
+              { n: "80", l: "School Bags Given" },
+              { n: "80", l: "Uniforms Provided" },
+            ].map(s => (
+              <div key={s.l} style={{ background: "#2d0a14", padding: "2rem", textAlign: "center" }}>
+                <div style={{ fontFamily: "'Lora', serif", fontSize: "2.5rem", fontWeight: 700, color: "#f0c040", lineHeight: 1 }}>{s.n}</div>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", color: "rgba(255,255,255,0.75)", letterSpacing: "0.07em", textTransform: "uppercase", marginTop: "0.5rem" }}>{s.l}</div>
+              </div>
+            ))}
           </div>
 
         </div>
@@ -947,8 +958,24 @@ export default function WaytoSchools() {
                     <input className="field" placeholder="Your Name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} />
                     <input className="field" type="email" placeholder="Email Address" value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} />
                     <textarea className="field" placeholder="How would you like to help?" rows={5} value={form.message} onChange={e => setForm({ ...form, message: e.target.value })} style={{ resize: "vertical" }} />
-                    <button className="btn-donate" onClick={() => setSent(true)} style={{ alignSelf: "flex-start", padding: "0.8rem 2rem", fontSize: "0.9rem" }}>
-                      Send Message
+                    <button className="btn-donate" onClick={async () => {
+                      if (!form.name || !form.email || !form.message) return;
+                      setSending(true);
+                      try {
+                        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+                          from_name: form.name,
+                          from_email: form.email,
+                          message: form.message,
+                          inquiry_type: form.type,
+                        }, EMAILJS_PUBLIC_KEY);
+                        setSent(true);
+                      } catch {
+                        alert("Sorry, something went wrong. Please email us directly at " + EMAIL);
+                      } finally {
+                        setSending(false);
+                      }
+                    }} disabled={sending} style={{ alignSelf: "flex-start", padding: "0.8rem 2rem", fontSize: "0.9rem", opacity: sending ? 0.7 : 1 }}>
+                      {sending ? "Sending..." : "Send Message"}
                     </button>
                   </div>
                 </div>
