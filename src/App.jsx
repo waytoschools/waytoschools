@@ -820,52 +820,6 @@ export default function WaytoSchools() {
             </p>
           </div>
 
-          {/* Masonry-style photo grid */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gridTemplateRows: "auto",
-            gap: "0.75rem",
-          }} className="photo-grid">
-            {/* Large featured photo - spans 2 rows on the left */}
-            <div style={{ gridRow: "span 2", overflow: "hidden", position: "relative" }}
-              onMouseOver={e => { e.currentTarget.querySelector('img').style.transform = "scale(1.05)"; }}
-              onMouseOut={e => { e.currentTarget.querySelector('img').style.transform = "scale(1)"; }}
-            >
-              <img src="/images/IMG_7211.jpg" alt="Students in school uniforms, Gulmi Nepal" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", transition: "transform 0.5s ease", display: "block", minHeight: 420 }} />
-            </div>
-            {/* Regular photos */}
-            {[
-              { src: "/images/IMG_7190.jpg", alt: "Girls in school uniforms, Nepal" },
-              { src: "/images/IMG_7187.jpg", alt: "Child with school bag, Nepal" },
-              { src: "/images/IMG_7185.jpg", alt: "Child at school, Gulmi" },
-              { src: "/images/IMG_7197.jpg", alt: "Children in the community" },
-            ].map(photo => (
-              <div key={photo.src} style={{ overflow: "hidden", position: "relative", height: 200 }}
-                onMouseOver={e => { e.currentTarget.querySelector('img').style.transform = "scale(1.05)"; }}
-                onMouseOut={e => { e.currentTarget.querySelector('img').style.transform = "scale(1)"; }}
-              >
-                <img src={photo.src} alt={photo.alt} style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease", display: "block" }} />
-              </div>
-            ))}
-            {/* Bottom wide photo - spans 2 columns */}
-            <div style={{ gridColumn: "span 2", overflow: "hidden", position: "relative", height: 220 }}
-              onMouseOver={e => { e.currentTarget.querySelector('img').style.transform = "scale(1.05)"; }}
-              onMouseOut={e => { e.currentTarget.querySelector('img').style.transform = "scale(1)"; }}
-            >
-              <img src="/images/Study.jpg" alt="Community meeting in Gulmi, Nepal" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease", display: "block" }} />
-              <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "1rem 1.5rem", background: "linear-gradient(to top, rgba(20,4,10,0.85) 0%, transparent 100%)" }}>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.82rem", color: "rgba(255,255,255,0.9)", fontStyle: "italic" }}>WaytoSchools team meeting with community families — Gulmi, Nepal 2024</p>
-              </div>
-            </div>
-            {/* Side photo */}
-            <div style={{ overflow: "hidden", position: "relative", height: 220 }}
-              onMouseOver={e => { e.currentTarget.querySelector('img').style.transform = "scale(1.05)"; }}
-              onMouseOut={e => { e.currentTarget.querySelector('img').style.transform = "scale(1)"; }}
-            >
-              <img src="/images/ShreeMajhi2.jpg" alt="School building, Majhi Gaun" style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.5s ease", display: "block" }} />
-            </div>
-          </div>
         </div>
       </section>
 
