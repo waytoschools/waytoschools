@@ -398,7 +398,7 @@ export default function WaytoSchools() {
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
           <div className="stats-band" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "1rem", textAlign: "center" }}>
             {[
-              { n: "23", l: "Girls Currently Supported" },
+              { n: "36", l: "Students Supported" },
               { n: "2", l: "12th Grade Graduates" },
               { n: "$4/mo", l: "Can Send a Child for a Year" },
               { n: "501(c)(3)", l: "Certified US Nonprofit" },
@@ -511,6 +511,40 @@ export default function WaytoSchools() {
         </div>
       </section>
 
+      {/* ── THE BIGGER PICTURE ── */}
+      <section id="bigger-picture" style={{ padding: "7rem 2.5rem", background: "#2d0a14" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "4rem" }}>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#f0c040", display: "block", marginBottom: "0.8rem" }}>The Vision Behind the Work</span>
+            <h2 style={{ fontFamily: "'Lora', serif", fontSize: "clamp(2rem, 4vw, 2.8rem)", fontWeight: 700, color: "white" }}>The Bigger Picture</h2>
+          </div>
+
+          <div style={{ maxWidth: 700, margin: "0 auto" }}>
+            <div style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: "4px", padding: "2.5rem" }}>
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.2em", textTransform: "uppercase", color: "#f0c040", display: "block", marginBottom: "1.2rem" }}>The Vision</span>
+              <h3 style={{ fontFamily: "'Lora', serif", fontSize: "clamp(1.6rem, 3vw, 2.2rem)", fontWeight: 700, color: "white", lineHeight: 1.25, marginBottom: "1.5rem" }}>
+                We're not just paying tuition.<br />We're building a pipeline.
+              </h3>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.97rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.8, marginBottom: "2rem" }}>
+                No Majhi person has a Master's degree. Only 15 have bachelor's degrees. We want to support every step of the education journey — from primary school to university — while strengthening the institutions that make each step possible.
+              </p>
+              {/* Pipeline — single row, nowrap */}
+              <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", flexWrap: "nowrap", marginBottom: "2rem", overflowX: "auto" }}>
+                {["Primary School", "Secondary (6–10)", "Grade 11–12", "University"].map((stage, i, arr) => (
+                  <div key={stage} style={{ display: "flex", alignItems: "center", gap: "0.4rem", flexShrink: 0 }}>
+                    <div style={{ background: "rgba(240,192,64,0.15)", border: "1px solid rgba(240,192,64,0.4)", padding: "0.55rem 0.9rem", fontFamily: "'DM Sans', sans-serif", fontSize: "0.78rem", fontWeight: 600, color: "white", textAlign: "center", borderRadius: "2px", whiteSpace: "nowrap" }}>{stage}</div>
+                    {i < arr.length - 1 && <span style={{ color: "#f0c040", fontWeight: 700, fontSize: "1rem", flexShrink: 0 }}>→</span>}
+                  </div>
+                ))}
+              </div>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.88rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.7, fontStyle: "italic" }}>
+                Each graduate makes education more believable for the next family — and makes the community stronger for everyone.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── TEAM ── */}
       <section id="team" style={{ padding: "7rem 2.5rem", background: "#f5ece0" }}>
         <div style={{ maxWidth: 1100, margin: "0 auto" }}>
@@ -523,12 +557,12 @@ export default function WaytoSchools() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem" }} className="team-grid">
             {[
-              { name: "Bindiya Jha", role: "Board President", photo: "/images/BJ.jpg", linkedin: "https://www.linkedin.com/in/bindiya-jha-ncsc-cchi-p-certified-nepali-interpreter-72b37a156/", bio: "A fierce advocate for girls' education and equal access for all children. As a NCSC-CCHI-P certified Nepali interpreter, she bridges critical language and cultural gaps for Nepali communities. Her work at WaytoSchools reflects her lifelong commitment to ensuring every child has a voice and a path forward." },
-              { name: "Samanta Sharma", role: "Board Vice-President", photo: "/images/SS.jpg", linkedin: "https://www.linkedin.com/in/samanta-sharma/", bio: "Driven by the belief that every child deserves the opportunity to thrive, Samanta brings energy and vision to WaytoSchools as Board Vice-President. She champions girls' education as a cornerstone of community development in Nepal. Her leadership helps guide the organization's strategic direction and outreach efforts." },
-              { name: "Kabita Karki", role: "Board Treasurer", photo: "/images/KK.jpg", linkedin: "https://www.brownhealth.org/providers/kabita-karki-md", bio: "Committed to the deep connection between health, education, and community well-being, Kabita brings a physician's dedication to WaytoSchools. She serves as an Internal Medicine Hospitalist at Rhode Island Hospital, where she trained after earning her MD from Tribhuvan University in Nepal. She channels that same care for her patients into ensuring girls in Nepal have the resources to build healthy, educated futures." },
-              { name: "Hasina Karki", role: "Board Secretary", photo: "/images/HK.jpg", linkedin: "https://www.linkedin.com/in/hkarkideertz/", bio: "With a deep conviction that education is the surest path out of poverty, Hasina works to create lasting pathways of opportunity for Nepal's most vulnerable children. As Board Secretary, she keeps WaytoSchools organized and mission-focused. Her dedication to girls' education reflects her belief that empowering one girl can transform an entire community." },
-              { name: "Anjana Gautam", role: "Founder & Executive Director", photo: "/images/AG.jpg", linkedin: "https://www.linkedin.com/in/anjana-gautam-2210ba10/", bio: "The driving force behind WaytoSchools, Anjana founded the organization to turn her lifelong dedication to girls' education into lasting impact. She leads with vision and compassion, building programs that reach the most underserved communities in Nepal. Under her direction, WaytoSchools has grown into a trusted bridge between global supporters and local change." },
-              { name: "Saramsh Pandit", role: "Co-founder & Program Manager", photo: "/images/SP.jpg", linkedin: "https://www.linkedin.com/in/saramsh-pandit-67356214/", bio: "Dedicated to removing the barriers that keep children from reaching their full potential, Saramsh co-founded WaytoSchools to make that mission a reality on the ground. As Program Manager, he oversees the design and delivery of initiatives that bring educational resources directly to girls in rural Nepal. He believes that access to education is not a privilege — it is a right." },
+              { name: "Bindiya Jha", role: "Board President", photo: "/images/BJ.jpg", linkedin: "https://www.linkedin.com/in/bindiya-jha-ncsc-cchi-p-certified-nepali-interpreter-72b37a156/", bio: "A fierce advocate for equitable education and equal access for all children. As a NCSC-CCHI-P certified Nepali interpreter, she bridges critical language and cultural gaps for Nepali communities. Her work at WaytoSchools reflects her lifelong commitment to ensuring every child — girl or boy — has a voice and a path forward." },
+              { name: "Samanta Sharma", role: "Board Vice-President", photo: "/images/SS.jpg", linkedin: "https://www.linkedin.com/in/samanta-sharma/", bio: "Driven by the belief that every child deserves the opportunity to thrive, Samanta brings energy and vision to WaytoSchools as Board Vice-President. She champions education for all children in the Majhi community as a cornerstone of community development in Nepal. Her leadership helps guide the organization's strategic direction and outreach efforts." },
+              { name: "Kabita Karki", role: "Board Treasurer", photo: "/images/KK.jpg", linkedin: "https://www.brownhealth.org/providers/kabita-karki-md", bio: "Committed to the deep connection between health, education, and community well-being, Kabita brings a physician's dedication to WaytoSchools. She serves as an Internal Medicine Hospitalist at Rhode Island Hospital, where she trained after earning her MD from Tribhuvan University in Nepal. She channels that same care for her patients into ensuring Majhi children have the resources to build healthy, educated futures." },
+              { name: "Hasina Karki", role: "Board Secretary", photo: "/images/HK.jpg", linkedin: "https://www.linkedin.com/in/hkarkideertz/", bio: "With a deep conviction that education is the surest path out of poverty, Hasina works to create lasting pathways of opportunity for Nepal's most vulnerable children. As Board Secretary, she keeps WaytoSchools organized and mission-focused. Her dedication to the Majhi community reflects her belief that empowering every child — regardless of gender — can transform an entire community." },
+              { name: "Anjana Gautam", role: "Founder & Executive Director", photo: "/images/AG.jpg", linkedin: "https://www.linkedin.com/in/anjana-gautam-2210ba10/", bio: "The driving force behind WaytoSchools, Anjana founded the organization to turn her lifelong dedication to children's education into lasting impact. She leads with vision and compassion, building programs that reach the most underserved communities in Nepal. Under her direction, WaytoSchools has expanded its reach to support both girls and boys in the Majhi community." },
+              { name: "Saramsh Pandit", role: "Co-founder & Program Manager", photo: "/images/SP.jpg", linkedin: "https://www.linkedin.com/in/saramsh-pandit-67356214/", bio: "Dedicated to removing the barriers that keep children from reaching their full potential, Saramsh co-founded WaytoSchools to make that mission a reality on the ground. As Program Manager, he oversees the design and delivery of initiatives that bring educational resources to children across the Majhi community. He believes that access to education is not a privilege — it is a right." },
             ].map(m => (
               <div key={m.name} style={{
                 background: "white",
@@ -617,10 +651,6 @@ export default function WaytoSchools() {
                 <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.7, color: "#4a1a25", marginBottom: "1rem" }}>
                   A government school with around 900 students. Well equipped with facilities including a hostel for grade 10 students. New building under construction with library, museum, canteen, and sports club.
                 </p>
-                <div style={{ background: "#f5ece0", padding: "1rem" }}>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", fontWeight: 600, marginBottom: "0.5rem" }}>Student Breakdown:</p>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.85rem", color: "#4a1a25" }}>Girls: 37 &nbsp;|&nbsp; Boys: 37 &nbsp;|&nbsp; Total: 74</p>
-                </div>
               </div>
             </div>
           </div>
